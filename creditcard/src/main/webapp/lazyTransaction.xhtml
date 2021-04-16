@@ -1,0 +1,73 @@
+<ui:composition 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+	template="layout.xhtml">
+	<ui:define name="content">
+		<h:form id="transactionForm">
+			<p:dataTable
+				id="transactionList"
+				value="#{transactionController.lazyDataModel}"
+				var="transaction"
+				paginator="true"
+				rows="10"
+				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+				rowsPerPageTemplate="5,10,15" 
+				selectionMode="single"
+                selection="#{transactionController.selectedTransaction}">
+                
+	                <p:column headerText="TransactionNumber" sortBy="#{transaction.transactionNumber}">
+	                	<h:outputText value="#{transaction.transactionNumber}"/>
+	            	</p:column>
+	            	  <p:column headerText="TransactionNumber" sortBy="#{transaction.localDateTime}">
+	                	<h:outputText value="#{transaction.localDateTime}"/>
+	            	</p:column>
+	            	  <p:column headerText="TransactionNumber" sortBy="#{transaction.transactionTimeStamp}">
+	                	<h:outputText value="#{transaction.transactionTimeStamp}"/>
+	            	</p:column>
+	            	  <p:column headerText="TransactionNumber" sortBy="#{transaction.amount}">
+	                	<h:outputText value="#{transaction.amount}"/>
+	            	</p:column>
+	            	  <p:column headerText="TransactionNumber" sortBy="#{transaction.currency}">
+	                	<h:outputText value="#{transaction.currency}"/>
+	            	</p:column>
+                </p:dataTable>
+                <p:contextMenu for="transactionList">
+            		<p:menuitem value="View" update="transactionDetails" icon="pi pi-search" 
+            					oncomplete="PF('transactionDialog').show()"></p:menuitem>
+            	</p:contextMenu>
+                
+                <p:dialog header="Transaction Details" widgetVar="transactionDialog" modal="true" showEffect="fade"
+                  hideEffect="fade" resizable="true" loseOnScape="true">
+            	<p:outputPanel id="transactionDetails" style="text-align:center;">
+                
+                	<p:panelGrid columns="2" columnClasses="label,value">
+	                    <h:outputText value="Transaction Number" style="font-weight:bold"/>
+	                    <h:outputText value="#{transactionController.selectedTransaction.transactionNumber}"/>
+	                    <h:outputText value="localDateTime" style="font-weight:bold"/>
+	                    <h:outputText value="#{transactionController.selectedTransaction.localDateTime}"/>
+	                    <h:outputText value="transactionTimeStamp" style="font-weight:bold"/>
+	                    <h:outputText value="#{transactionController.selectedTransaction.transactionTimeStamp}"/>
+	                    <h:outputText value="Amount" style="font-weight:bold"/>
+	                    <h:outputText value="#{transactionController.selectedTransaction.amount}"/>
+	                    <h:outputText value="Currency" style="font-weight:bold"/>
+	                    <h:outputText value="#{transactionController.selectedTransaction.currency}"/>
+	                    <h:outputText value="Card Number" style="font-weight:bold"/>
+	                    <h:outputText value="#{transactionController.selectedTransaction.creditCard.creditCardNumber}"/>
+	                   	<h:outputText value="Customer Number" style="font-weight:bold"/>
+	                    <h:outputText value="#{transactionController.selectedTransaction.creditCard.customer.customerNumber}"/>
+	                    <h:outputText value="Customer Name" style="font-weight:bold"/>
+	                    <h:outputText value="#{transactionController.selectedTransaction.creditCard.customer.name}"/>
+	                     <h:outputText value="Customer Surame" style="font-weight:bold"/>
+	                    <h:outputText value="#{transactionController.selectedTransaction.creditCard.customer.surname}"/>
+                    </p:panelGrid>
+                   </p:outputPanel>
+                   
+                   </p:dialog>
+                
+			
+		</h:form>
+	
+	</ui:define>
+</ui:composition>

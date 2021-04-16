@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <h:head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Transaction</title>
+    </h:head>
+	<h:body>
+		<div class="ui-g">
+			<div class="ui-g-12">
+				<p:growl id="messages" showDetail="true" closable="true"/>
+				<h:form>
+					<p:accordionPanel widgetVar="basic" activeIndex="">
+						<p:tab title="Search Transactions">
+							<p:panelGrid id="filterDetail" columns="6">
+								<p:outputLabel for="transactionNumber" value="Transaction Number" style="font-weight:bold"></p:outputLabel>
+								<p:inputText id="transactionNumber" value="#{transactionController.transactionFilter.transactionNumber}"></p:inputText>
+									
+								<p:outputLabel for="cardNumber" value="Card Number" style="font-weight:bold"></p:outputLabel>
+								<p:inputText id="cardNumber" value="#{transactionController.transactionFilter.creditCardNumber}"></p:inputText>
+									
+								<p:outputLabel for="customerNumber" value="Customer Number" style="font-weight:bold"></p:outputLabel>
+								<p:inputText id="customerNumber" value="#{transactionController.transactionFilter.customerNumber}"></p:inputText>
+							</p:panelGrid>
+							<p:commandButton value="Search" action="#{transactionController.findAll()}" update="transactionForm" style="margin:2px" ></p:commandButton>
+							<p:commandButton value="Clean" action="#{transactionController.cleanSearchCriteria()}" update="filterDetail" style="margin:2px" ></p:commandButton>
+						</p:tab>
+					</p:accordionPanel>
+				</h:form>
+			</div>
+			<div class="ui-g-12">
+				<ui:insert name="content"/>
+			</div>
+		</div>
+	</h:body>
+</f:view>
+</html>
