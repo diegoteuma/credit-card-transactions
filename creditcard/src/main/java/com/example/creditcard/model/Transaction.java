@@ -1,6 +1,7 @@
 package com.example.creditcard.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +24,7 @@ public class Transaction {
 	@NotBlank
 	private String transactionNumber;
 	@NotBlank
-	private String localDateTime;
+	private LocalDateTime localDateTime;
 	@NotNull
 	private Long transactionTimeStamp;
 	@NotNull
@@ -61,13 +62,13 @@ public class Transaction {
 	/**
 	 * @return the localDateTime
 	 */
-	public String getLocalDateTime() {
+	public LocalDateTime getLocalDateTime() {
 		return localDateTime;
 	}
 	/**
 	 * @param localDateTime the localDateTime to set
 	 */
-	public void setLocalDateTime(String localDateTime) {
+	public void setLocalDateTime(LocalDateTime localDateTime) {
 		this.localDateTime = localDateTime;
 	}
 	/**
